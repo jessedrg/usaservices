@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowRight, MapPin } from 'lucide-react'
-import { getStateBySlug, getAllStateSlugs } from '@/lib/cities'
+import { getStateBySlug } from '@/lib/cities'
 import { SERVICES } from '@/lib/services'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { CTASection } from '@/components/CTASection'
@@ -13,9 +13,8 @@ interface Props {
   params: { state: string }
 }
 
-export function generateStaticParams() {
-  return getAllStateSlugs().map((state) => ({ state }))
-}
+export const dynamicParams = true
+export const revalidate = 86400 // ISR: revalidate every 24h
 
 export function generateMetadata({ params }: Props): Metadata {
   const state = getStateBySlug(params.state)

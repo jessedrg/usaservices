@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowRight, MapPin, Phone, Clock, Shield, Star, CheckCircle } from 'lucide-react'
-import { getCityBySlug, getAllCityPaths, getNearbyCities } from '@/lib/cities'
-import { SERVICES, getServiceBySlug, getAllServiceSlugs } from '@/lib/services'
+import { getCityBySlug, getNearbyCities } from '@/lib/cities'
+import { SERVICES, getServiceBySlug } from '@/lib/services'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { CTASection } from '@/components/CTASection'
 import { FAQSection } from '@/components/FAQSection'
@@ -21,17 +21,8 @@ interface Props {
   params: { state: string; city: string; service: string }
 }
 
-export function generateStaticParams() {
-  const cityPaths = getAllCityPaths()
-  const serviceSlugs = getAllServiceSlugs()
-  return cityPaths.flatMap(({ stateSlug, citySlug }) =>
-    serviceSlugs.map((service) => ({
-      state: stateSlug,
-      city: citySlug,
-      service,
-    }))
-  )
-}
+export const dynamicParams = true
+export const revalidate = 86400 // ISR: revalidate every 24h
 
 export function generateMetadata({ params }: Props): Metadata {
   const cityResult = getCityBySlug(params.state, params.city)
