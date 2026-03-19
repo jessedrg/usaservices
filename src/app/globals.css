@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply antialiased text-gray-900 bg-white;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold text-white bg-brand-600 rounded-lg hover:bg-brand-700 transition-colors duration-200 shadow-sm;
+  }
+  .btn-emergency {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-bold text-white bg-emergency-600 rounded-lg hover:bg-emergency-700 transition-colors duration-200 shadow-lg animate-pulse hover:animate-none;
+  }
+  .card {
+    @apply bg-white rounded-xl border border-gray-200 p-6 shadow-sm hover:shadow-md transition-shadow duration-200;
+  }
+  .section-heading {
+    @apply text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl;
+  }
+}
