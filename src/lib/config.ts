@@ -1,6 +1,6 @@
-export const SITE_PHONE = '(217) 634-7135'
-export const SITE_PHONE_RAW = '2176347135'
-export const SITE_PHONE_HREF = 'tel:+12176347135'
+export const SITE_PHONE = '(217) 635-7135'
+export const SITE_PHONE_RAW = '2176357135'
+export const SITE_PHONE_HREF = 'tel:+12176357135'
 
 /**
  * BATCH RELEASE CONTROL
