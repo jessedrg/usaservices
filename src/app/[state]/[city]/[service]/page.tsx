@@ -15,7 +15,7 @@ import {
   getBaseUrl,
   getSiteName,
 } from '@/lib/seo'
-import { SITE_PHONE, SITE_PHONE_HREF } from '@/lib/config'
+import { SITE_PHONE, SITE_PHONE_HREF, ENABLED_STATES } from '@/lib/config'
 
 interface Props {
   params: { state: string; city: string; service: string }
@@ -25,6 +25,7 @@ export const dynamicParams = true
 export const revalidate = 86400 // ISR: revalidate every 24h
 
 export function generateMetadata({ params }: Props): Metadata {
+  if (!ENABLED_STATES.includes(params.state)) return {}
   const cityResult = getCityBySlug(params.state, params.city)
   const service = getServiceBySlug(params.service)
   if (!cityResult || !service) return {}
@@ -45,6 +46,7 @@ export function generateMetadata({ params }: Props): Metadata {
 }
 
 export default function ServiceCityPage({ params }: Props) {
+  if (!ENABLED_STATES.includes(params.state)) notFound()
   const cityResult = getCityBySlug(params.state, params.city)
   const service = getServiceBySlug(params.service)
   if (!cityResult || !service) notFound()

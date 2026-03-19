@@ -1,13 +1,13 @@
 import Link from 'next/link'
 import { Phone, Clock, Shield, Star, CheckCircle, ArrowRight } from 'lucide-react'
 import { SERVICES } from '@/lib/services'
-import { getAllStates } from '@/lib/cities'
+import { getEnabledStates } from '@/lib/cities'
 import { ServiceCard } from '@/components/ServiceCard'
 import { CTASection } from '@/components/CTASection'
 import { SITE_PHONE, SITE_PHONE_HREF } from '@/lib/config'
 
 export default function HomePage() {
-  const states = getAllStates().slice(0, 12)
+  const states = getEnabledStates()
 
   return (
     <>

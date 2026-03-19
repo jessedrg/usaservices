@@ -37,6 +37,12 @@ export function getAllStates(): StateIndexEntry[] {
   return statesIndex as StateIndexEntry[]
 }
 
+export function getEnabledStates(): StateIndexEntry[] {
+  return (statesIndex as StateIndexEntry[]).filter((s) =>
+    ENABLED_STATES.includes(s.stateSlug)
+  )
+}
+
 export function getStateBySlug(slug: string): StateData | undefined {
   return data.states[slug]
 }

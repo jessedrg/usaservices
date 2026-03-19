@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, MapPin } from 'lucide-react'
-import { getAllStates } from '@/lib/cities'
+import { getEnabledStates } from '@/lib/cities'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { CTASection } from '@/components/CTASection'
 import { canonicalUrl } from '@/lib/seo'
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 }
 
 export default function LocationsPage() {
-  const states = getAllStates()
+  const states = getEnabledStates()
 
   return (
     <>

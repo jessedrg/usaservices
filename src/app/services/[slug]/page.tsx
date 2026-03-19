@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowRight } from 'lucide-react'
 import { SERVICES, getServiceBySlug, getAllServiceSlugs } from '@/lib/services'
-import { getAllStates } from '@/lib/cities'
+import { getEnabledStates } from '@/lib/cities'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { CTASection } from '@/components/CTASection'
 import { FAQSection } from '@/components/FAQSection'
@@ -33,7 +33,7 @@ export default function ServicePage({ params }: Props) {
   const service = getServiceBySlug(params.slug)
   if (!service) notFound()
 
-  const states = getAllStates().slice(0, 20)
+  const states = getEnabledStates()
 
   const faqJsonLd = faqSchema(service.faqs)
   const breadcrumbJsonLd = breadcrumbSchema([

@@ -7,7 +7,7 @@ import { SERVICES } from '@/lib/services'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { CTASection } from '@/components/CTASection'
 import { canonicalUrl, breadcrumbSchema, getBaseUrl } from '@/lib/seo'
-import { SITE_PHONE_HREF } from '@/lib/config'
+import { SITE_PHONE_HREF, ENABLED_STATES } from '@/lib/config'
 
 interface Props {
   params: { state: string }
@@ -17,6 +17,7 @@ export const dynamicParams = true
 export const revalidate = 86400 // ISR: revalidate every 24h
 
 export function generateMetadata({ params }: Props): Metadata {
+  if (!ENABLED_STATES.includes(params.state)) return {}
   const state = getStateBySlug(params.state)
   if (!state) return {}
 
@@ -28,6 +29,7 @@ export function generateMetadata({ params }: Props): Metadata {
 }
 
 export default function StatePage({ params }: Props) {
+  if (!ENABLED_STATES.includes(params.state)) notFound()
   const state = getStateBySlug(params.state)
   if (!state) notFound()
 
