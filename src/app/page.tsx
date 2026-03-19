@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Phone, Clock, Shield, Star, CheckCircle, ArrowRight } from 'lucide-react'
 import { SERVICES } from '@/lib/services'
 import { getEnabledStates } from '@/lib/cities'
@@ -15,7 +16,8 @@ export default function HomePage() {
       <section className="relative bg-gradient-to-br from-brand-900 via-brand-800 to-brand-950 text-white overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
-          <div className="max-w-3xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
             <div className="inline-flex items-center gap-2 bg-emergency-600/20 text-emergency-200 border border-emergency-500/30 rounded-full px-4 py-1.5 text-sm font-medium mb-6">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emergency-400 opacity-75" />
@@ -70,6 +72,29 @@ export default function HomePage() {
                 Background Checked
               </span>
             </div>
+          </div>
+          <div className="hidden lg:grid grid-cols-2 gap-4">
+            <div className="relative aspect-[3/4] rounded-xl overflow-hidden shadow-2xl">
+              <Image
+                src="/images/electrician.jpg"
+                alt="Licensed emergency electrician at work"
+                fill
+                className="object-cover"
+                sizes="25vw"
+                priority
+              />
+            </div>
+            <div className="relative aspect-[3/4] rounded-xl overflow-hidden shadow-2xl mt-8">
+              <Image
+                src="/images/plumber.jpg"
+                alt="Professional emergency plumber"
+                fill
+                className="object-cover"
+                sizes="25vw"
+                priority
+              />
+            </div>
+          </div>
           </div>
         </div>
       </section>

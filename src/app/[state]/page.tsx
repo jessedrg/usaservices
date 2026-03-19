@@ -6,7 +6,7 @@ import { getStateBySlug } from '@/lib/cities'
 import { SERVICES } from '@/lib/services'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { CTASection } from '@/components/CTASection'
-import { canonicalUrl, breadcrumbSchema, getBaseUrl } from '@/lib/seo'
+import { canonicalUrl, breadcrumbSchema, getBaseUrl, getSiteName } from '@/lib/seo'
 import { SITE_PHONE_HREF, ENABLED_STATES } from '@/lib/config'
 
 interface Props {
@@ -21,10 +21,27 @@ export function generateMetadata({ params }: Props): Metadata {
   const state = getStateBySlug(params.state)
   if (!state) return {}
 
+  const title = `Emergency Home Services in ${state.stateName} — 24/7 Service`
+  const description = `Find 24/7 emergency electricians, plumbers, HVAC technicians, locksmiths and more in ${state.stateName}. Fast response across ${state.cities.length.toLocaleString()} cities. Licensed & insured.`
+  const url = canonicalUrl(`/${state.stateSlug}`)
   return {
-    title: `Emergency Home Services in ${state.stateName} — 24/7 Service`,
-    description: `Find 24/7 emergency electricians, plumbers, HVAC technicians, locksmiths and more in ${state.stateName}. Fast response across ${state.cities.length.toLocaleString()} cities. Licensed & insured.`,
-    alternates: { canonical: canonicalUrl(`/${state.stateSlug}`) },
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: getSiteName(),
+      images: [{ url: '/images/og-electrician.jpg', width: 1200, height: 630, alt: `Emergency services in ${state.stateName}` }],
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/images/og-electrician.jpg'],
+    },
   }
 }
 

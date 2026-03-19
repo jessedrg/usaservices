@@ -12,10 +12,32 @@ export const metadata: Metadata = {
   },
   description:
     'Find trusted emergency electricians, plumbers, HVAC technicians, locksmiths and more. 24/7 rapid response for urgent home service needs across the United States.',
+  keywords: ['emergency home services', '24/7 electrician', 'emergency plumber', 'emergency locksmith', 'HVAC repair', 'home repair near me'],
+  authors: [{ name: getSiteName() }],
+  creator: getSiteName(),
+  publisher: getSiteName(),
   openGraph: {
     type: 'website',
     siteName: getSiteName(),
     locale: 'en_US',
+    title: `${getSiteName()} — 24/7 Emergency Home Services`,
+    description: 'Find trusted emergency electricians, plumbers, HVAC technicians, locksmiths and more. 24/7 rapid response across the United States.',
+    url: getBaseUrl(),
+    images: [
+      {
+        url: '/images/og-electrician.jpg',
+        width: 1200,
+        height: 630,
+        alt: '24/7 Emergency Home Services — FastServ US',
+        type: 'image/jpeg',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${getSiteName()} — 24/7 Emergency Home Services`,
+    description: 'Find trusted emergency electricians, plumbers, HVAC technicians, locksmiths and more. 24/7 rapid response across the United States.',
+    images: ['/images/og-electrician.jpg'],
   },
   robots: {
     index: true,

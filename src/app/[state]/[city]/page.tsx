@@ -6,6 +6,7 @@ import { getCityBySlug, getNearbyCities } from '@/lib/cities'
 import { SERVICES } from '@/lib/services'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { CTASection } from '@/components/CTASection'
+import Image from 'next/image'
 import {
   canonicalUrl,
   breadcrumbSchema,
@@ -28,11 +29,26 @@ export function generateMetadata({ params }: Props): Metadata {
   if (!result) return {}
   const { state, city } = result
 
+  const title = `Emergency Home Services in ${city.city}, ${state.stateId} — 24/7`
+  const description = `24/7 emergency electricians, plumbers, HVAC, locksmiths & more in ${city.city}, ${state.stateName}. Fast 30-60 min response. Licensed & insured professionals serving ${city.city} and surrounding areas.`
+  const url = canonicalUrl(`/${state.stateSlug}/${city.citySlug}`)
   return {
-    title: `Emergency Home Services in ${city.city}, ${state.stateId} — 24/7`,
-    description: `24/7 emergency electricians, plumbers, HVAC, locksmiths & more in ${city.city}, ${state.stateName}. Fast 30-60 min response. Licensed & insured professionals serving ${city.city} and surrounding areas.`,
-    alternates: {
-      canonical: canonicalUrl(`/${state.stateSlug}/${city.citySlug}`),
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: getSiteName(),
+      images: [{ url: '/images/og-plumber.jpg', width: 1200, height: 630, alt: `Emergency services in ${city.city}, ${state.stateId}` }],
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/images/og-plumber.jpg'],
     },
   }
 }
@@ -82,29 +98,41 @@ export default function CityPage({ params }: Props) {
         />
 
         {/* Hero */}
-        <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
-            <MapPin className="h-4 w-4" />
-            <span>
-              {city.county} County, {state.stateName}
-            </span>
+        <div className="mb-12 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <div>
+            <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
+              <MapPin className="h-4 w-4" />
+              <span>
+                {city.county} County, {state.stateName}
+              </span>
+            </div>
+            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900">
+              Emergency Home Services in{' '}
+              <span className="text-brand-600">{city.city}</span>,{' '}
+              {state.stateId}
+            </h1>
+            <p className="mt-4 text-xl text-gray-600">
+              Need an emergency electrician, plumber, or other home service
+              professional in {city.city}, {state.stateName}? Our licensed and
+              insured technicians are available 24/7 with typical response times
+              of 30-60 minutes.
+            </p>
+            <div className="mt-6 flex flex-col sm:flex-row gap-4">
+              <a href={SITE_PHONE_HREF} className="btn-emergency">
+                <Phone className="h-5 w-5" />
+                Call Now for Service in {city.city}
+              </a>
+            </div>
           </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900">
-            Emergency Home Services in{' '}
-            <span className="text-brand-600">{city.city}</span>,{' '}
-            {state.stateId}
-          </h1>
-          <p className="mt-4 text-xl text-gray-600 max-w-3xl">
-            Need an emergency electrician, plumber, or other home service
-            professional in {city.city}, {state.stateName}? Our licensed and
-            insured technicians are available 24/7 with typical response times
-            of 30-60 minutes.
-          </p>
-          <div className="mt-6 flex flex-col sm:flex-row gap-4">
-            <a href={SITE_PHONE_HREF} className="btn-emergency">
-              <Phone className="h-5 w-5" />
-              Call Now for Service in {city.city}
-            </a>
+          <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-lg">
+            <Image
+              src="/images/plumber.jpg"
+              alt={`Emergency home services in ${city.city}, ${state.stateId}`}
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              priority
+            />
           </div>
         </div>
 

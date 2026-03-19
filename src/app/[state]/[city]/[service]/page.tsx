@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowRight, MapPin, Phone, Clock, Shield, Star, CheckCircle } from 'lucide-react'
+import Image from 'next/image'
 import { getCityBySlug, getNearbyCities } from '@/lib/cities'
 import { SERVICES, getServiceBySlug } from '@/lib/services'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
@@ -34,13 +35,24 @@ export function generateMetadata({ params }: Props): Metadata {
   const title = `${service.name} in ${city.city}, ${state.stateId} — 24/7 Fast Response`
   const description = `Need an ${service.shortName.toLowerCase()} in ${city.city}, ${state.stateName}? 24/7 emergency ${service.shortName.toLowerCase()} services with 30-60 min response. Licensed, insured professionals in ${city.city} & nearby areas.`
 
+  const url = canonicalUrl(`/${state.stateSlug}/${city.citySlug}/${service.slug}`)
   return {
     title,
     description,
-    alternates: {
-      canonical: canonicalUrl(
-        `/${state.stateSlug}/${city.citySlug}/${service.slug}`
-      ),
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: getSiteName(),
+      images: [{ url: service.ogImage, width: 1200, height: 630, alt: `${service.name} in ${city.city}, ${state.stateId}` }],
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [service.ogImage],
     },
   }
 }
@@ -112,47 +124,59 @@ export default function ServiceCityPage({ params }: Props) {
         />
 
         {/* Hero */}
-        <div className="mb-12">
-          <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
-            <MapPin className="h-4 w-4" />
-            <span>
-              {city.city}, {city.county} County, {state.stateName}
-            </span>
+        <div className="mb-12 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <div>
+            <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
+              <MapPin className="h-4 w-4" />
+              <span>
+                {city.city}, {city.county} County, {state.stateName}
+              </span>
+            </div>
+
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900 leading-tight">
+              {service.name} in{' '}
+              <span className="text-brand-600">
+                {city.city}, {state.stateId}
+              </span>
+            </h1>
+
+            <p className="mt-4 text-lg sm:text-xl text-gray-600">
+              {service.emergencyDescription} Serving {city.city},{' '}
+              {state.stateName} and the greater {city.county} County area with
+              rapid emergency response 24 hours a day, 7 days a week.
+            </p>
+
+            <div className="mt-6 flex flex-col sm:flex-row gap-4">
+              <a href={SITE_PHONE_HREF} className="btn-emergency text-lg">
+                <Phone className="h-5 w-5" />
+                Call Now: {SITE_PHONE}
+              </a>
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-4 text-sm text-gray-600">
+              <span className="flex items-center gap-1.5">
+                <Clock className="h-4 w-4 text-brand-600" />
+                30-60 Min Response in {city.city}
+              </span>
+              <span className="flex items-center gap-1.5">
+                <Shield className="h-4 w-4 text-brand-600" />
+                Licensed & Insured
+              </span>
+              <span className="flex items-center gap-1.5">
+                <Star className="h-4 w-4 text-brand-600" />
+                Upfront Pricing
+              </span>
+            </div>
           </div>
-
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900 leading-tight">
-            {service.name} in{' '}
-            <span className="text-brand-600">
-              {city.city}, {state.stateId}
-            </span>
-          </h1>
-
-          <p className="mt-4 text-lg sm:text-xl text-gray-600 max-w-3xl">
-            {service.emergencyDescription} Serving {city.city},{' '}
-            {state.stateName} and the greater {city.county} County area with
-            rapid emergency response 24 hours a day, 7 days a week.
-          </p>
-
-          <div className="mt-6 flex flex-col sm:flex-row gap-4">
-            <a href={SITE_PHONE_HREF} className="btn-emergency text-lg">
-              <Phone className="h-5 w-5" />
-              Call Now: {SITE_PHONE}
-            </a>
-          </div>
-
-          <div className="mt-6 flex flex-wrap gap-4 text-sm text-gray-600">
-            <span className="flex items-center gap-1.5">
-              <Clock className="h-4 w-4 text-brand-600" />
-              30-60 Min Response in {city.city}
-            </span>
-            <span className="flex items-center gap-1.5">
-              <Shield className="h-4 w-4 text-brand-600" />
-              Licensed & Insured
-            </span>
-            <span className="flex items-center gap-1.5">
-              <Star className="h-4 w-4 text-brand-600" />
-              Upfront Pricing
-            </span>
+          <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-lg">
+            <Image
+              src={service.image}
+              alt={`${service.name} in ${city.city}, ${state.stateId}`}
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              priority
+            />
           </div>
         </div>
 

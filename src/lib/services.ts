@@ -5,6 +5,8 @@ export interface Service {
   description: string
   emergencyDescription: string
   icon: string
+  image: string
+  ogImage: string
   metaTitle: string
   metaDescription: string
   keywords: string[]
@@ -19,6 +21,8 @@ export const SERVICES: Service[] = [
     description: 'Licensed emergency electricians available 24/7 for power outages, electrical fires, sparking outlets, tripped breakers, and all urgent electrical repairs.',
     emergencyDescription: 'Electrical emergencies can be life-threatening. Our licensed electricians respond within minutes to handle power outages, exposed wiring, burning smells from outlets, and electrical fires.',
     icon: 'Zap',
+    image: '/images/electrician.jpg',
+    ogImage: '/images/og-electrician.jpg',
     metaTitle: 'Emergency Electrician',
     metaDescription: '24/7 emergency electrician services. Fast response for power outages, electrical fires, sparking outlets & urgent repairs. Licensed & insured professionals.',
     keywords: ['emergency electrician', '24 hour electrician', 'electrical repair', 'power outage', 'electrician near me'],
@@ -36,6 +40,8 @@ export const SERVICES: Service[] = [
     description: 'Emergency plumbing services available 24/7 for burst pipes, severe leaks, clogged drains, sewer backups, water heater failures, and all urgent plumbing issues.',
     emergencyDescription: 'Water damage can escalate in minutes. Our emergency plumbers respond rapidly to burst pipes, major leaks, sewer backups, and flooding to minimize damage to your property.',
     icon: 'Droplets',
+    image: '/images/plumber.jpg',
+    ogImage: '/images/og-plumber.jpg',
     metaTitle: 'Emergency Plumber',
     metaDescription: '24/7 emergency plumber services. Rapid response for burst pipes, severe leaks, clogged drains & sewer backups. Licensed professionals available now.',
     keywords: ['emergency plumber', '24 hour plumber', 'burst pipe repair', 'plumber near me', 'emergency plumbing'],
@@ -53,6 +59,8 @@ export const SERVICES: Service[] = [
     description: 'Emergency heating and cooling repair available 24/7. Fast response for broken furnaces, AC failures, no heat situations, refrigerant leaks, and all HVAC emergencies.',
     emergencyDescription: 'Extreme temperatures can be dangerous. Our HVAC technicians provide rapid emergency repairs for heating and cooling system failures to keep your family safe and comfortable.',
     icon: 'Thermometer',
+    image: '/images/electrician.jpg',
+    ogImage: '/images/og-electrician.jpg',
     metaTitle: 'Emergency HVAC Repair',
     metaDescription: '24/7 emergency HVAC repair services. Fast response for broken furnaces, AC failures & heating emergencies. Certified technicians available now.',
     keywords: ['emergency hvac', '24 hour hvac repair', 'furnace repair', 'ac repair emergency', 'hvac near me'],
@@ -70,6 +78,8 @@ export const SERVICES: Service[] = [
     description: '24/7 emergency locksmith services for lockouts, broken locks, lock changes, key replacement, and all urgent security needs for homes, businesses, and vehicles.',
     emergencyDescription: 'Locked out or security compromised? Our emergency locksmiths provide rapid response for residential, commercial, and automotive lockouts and lock emergencies.',
     icon: 'Lock',
+    image: '/images/locksmith.jpg',
+    ogImage: '/images/og-locksmith.jpg',
     metaTitle: 'Emergency Locksmith',
     metaDescription: '24/7 emergency locksmith services. Fast response for lockouts, broken locks & key replacement. Licensed professionals for homes, businesses & cars.',
     keywords: ['emergency locksmith', '24 hour locksmith', 'lockout service', 'locksmith near me', 'car lockout'],
@@ -87,6 +97,8 @@ export const SERVICES: Service[] = [
     description: 'Emergency garage door repair available 24/7. Fast response for broken springs, stuck doors, off-track doors, opener failures, and all urgent garage door issues.',
     emergencyDescription: 'A malfunctioning garage door is both a security risk and safety hazard. Our technicians respond quickly to broken springs, jammed doors, and opener failures.',
     icon: 'DoorOpen',
+    image: '/images/electrician.jpg',
+    ogImage: '/images/og-electrician.jpg',
     metaTitle: 'Emergency Garage Door Repair',
     metaDescription: '24/7 emergency garage door repair. Fast response for broken springs, stuck doors & opener failures. Professional technicians available now.',
     keywords: ['emergency garage door repair', 'broken garage door spring', 'garage door stuck', 'garage door repair near me'],
@@ -104,6 +116,8 @@ export const SERVICES: Service[] = [
     description: 'Emergency appliance repair available 24/7. Fast service for broken refrigerators, washing machines, dryers, dishwashers, ovens, and all major appliance emergencies.',
     emergencyDescription: 'A broken refrigerator or flooding washing machine needs immediate attention. Our certified technicians provide rapid emergency appliance repair to prevent further damage.',
     icon: 'Refrigerator',
+    image: '/images/plumber.jpg',
+    ogImage: '/images/og-plumber.jpg',
     metaTitle: 'Emergency Appliance Repair',
     metaDescription: '24/7 emergency appliance repair services. Fast response for broken refrigerators, washers, dryers & more. Certified technicians available now.',
     keywords: ['emergency appliance repair', 'refrigerator repair', 'washer repair', 'appliance repair near me'],
@@ -121,6 +135,8 @@ export const SERVICES: Service[] = [
     description: 'Emergency roof repair available 24/7. Rapid response for storm damage, roof leaks, fallen trees, missing shingles, and all urgent roofing emergencies.',
     emergencyDescription: 'Roof damage leaves your home exposed to the elements. Our emergency roofers provide rapid tarping, leak repair, and storm damage restoration to protect your property.',
     icon: 'Home',
+    image: '/images/electrician.jpg',
+    ogImage: '/images/og-electrician.jpg',
     metaTitle: 'Emergency Roofing Repair',
     metaDescription: '24/7 emergency roofing repair. Fast response for storm damage, roof leaks & fallen trees. Licensed roofers available for immediate service.',
     keywords: ['emergency roof repair', 'roof leak repair', 'storm damage roof', 'emergency roofer near me'],
@@ -138,6 +154,8 @@ export const SERVICES: Service[] = [
     description: 'Emergency glass and window repair available 24/7. Fast board-up and replacement for broken windows, shattered glass doors, storefront damage, and all glass emergencies.',
     emergencyDescription: 'Broken glass is a security risk and safety hazard. Our emergency glass technicians provide rapid board-up service and glass replacement to secure your property.',
     icon: 'Square',
+    image: '/images/locksmith.jpg',
+    ogImage: '/images/og-locksmith.jpg',
     metaTitle: 'Emergency Glass & Window Repair',
     metaDescription: '24/7 emergency glass repair & window replacement. Fast board-up service for broken windows & glass doors. Professional service available now.',
     keywords: ['emergency glass repair', 'broken window repair', 'emergency board up', 'glass replacement near me'],

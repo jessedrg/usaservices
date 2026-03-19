@@ -7,7 +7,8 @@ import { getEnabledStates } from '@/lib/cities'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { CTASection } from '@/components/CTASection'
 import { FAQSection } from '@/components/FAQSection'
-import { canonicalUrl, faqSchema, breadcrumbSchema, getBaseUrl } from '@/lib/seo'
+import Image from 'next/image'
+import { canonicalUrl, faqSchema, breadcrumbSchema, getBaseUrl, getSiteName } from '@/lib/seo'
 import { SITE_PHONE_HREF } from '@/lib/config'
 
 interface Props {
@@ -22,10 +23,25 @@ export function generateMetadata({ params }: Props): Metadata {
   const service = getServiceBySlug(params.slug)
   if (!service) return {}
 
+  const url = canonicalUrl(`/services/${service.slug}`)
   return {
     title: `${service.metaTitle} — 24/7 Nationwide Service`,
     description: service.metaDescription,
-    alternates: { canonical: canonicalUrl(`/services/${service.slug}`) },
+    alternates: { canonical: url },
+    openGraph: {
+      title: `${service.metaTitle} — 24/7 Nationwide Service`,
+      description: service.metaDescription,
+      url,
+      siteName: getSiteName(),
+      images: [{ url: service.ogImage, width: 1200, height: 630, alt: service.name }],
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: service.metaTitle,
+      description: service.metaDescription,
+      images: [service.ogImage],
+    },
   }
 }
 
@@ -62,17 +78,29 @@ export default function ServicePage({ params }: Props) {
         />
 
         {/* Hero */}
-        <div className="mb-12">
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900">
-            {service.name}
-          </h1>
-          <p className="mt-4 text-xl text-gray-600 max-w-3xl">
-            {service.emergencyDescription}
-          </p>
-          <div className="mt-6">
-            <a href={SITE_PHONE_HREF} className="btn-emergency">
-              Call Now for {service.shortName} Service
-            </a>
+        <div className="mb-12 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <div>
+            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900">
+              {service.name}
+            </h1>
+            <p className="mt-4 text-xl text-gray-600">
+              {service.emergencyDescription}
+            </p>
+            <div className="mt-6">
+              <a href={SITE_PHONE_HREF} className="btn-emergency">
+                Call Now for {service.shortName} Service
+              </a>
+            </div>
+          </div>
+          <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-lg">
+            <Image
+              src={service.image}
+              alt={`${service.name} — licensed professional at work`}
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              priority
+            />
           </div>
         </div>
 
