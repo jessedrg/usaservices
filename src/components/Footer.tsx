@@ -131,10 +131,13 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-gray-800 text-center text-sm text-gray-500">
+        <div className="mt-12 pt-8 border-t border-gray-800 text-center text-sm text-gray-500 space-y-1">
           <p>
             &copy; {new Date().getFullYear()} {getSiteName()}. All rights
             reserved. Licensed, bonded & insured. Available 24/7 nationwide.
+          </p>
+          <p>
+            This service is provided and operated by Deskwing LLC. All rights reserved.
           </p>
         </div>
       </div>
