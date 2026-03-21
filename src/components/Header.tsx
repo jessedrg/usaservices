@@ -2,7 +2,8 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { Phone, Menu, X, Zap } from 'lucide-react'
+import { Phone, Menu, X } from 'lucide-react'
+import { Logo } from '@/components/Logo'
 import { getSiteName } from '@/lib/seo'
 import { SITE_PHONE, SITE_PHONE_HREF } from '@/lib/config'
 
@@ -28,7 +29,7 @@ export function Header() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-2">
-            <Zap className="h-8 w-8 text-brand-600" />
+            <Logo className="h-8 w-8" />
             <span className="text-xl font-extrabold text-gray-900">
               {getSiteName()}
             </span>

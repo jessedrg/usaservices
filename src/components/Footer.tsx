@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { Zap, Phone, Mail, MapPin } from 'lucide-react'
+import { Phone, Mail, MapPin } from 'lucide-react'
+import { Logo } from '@/components/Logo'
 import { SERVICES } from '@/lib/services'
 import { getSiteName } from '@/lib/seo'
 import { SITE_PHONE, SITE_PHONE_HREF } from '@/lib/config'
@@ -12,7 +13,7 @@ export function Footer() {
           {/* Brand */}
           <div>
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <Zap className="h-7 w-7 text-brand-400" />
+              <Logo className="h-7 w-7" />
               <span className="text-lg font-extrabold text-white">
                 {getSiteName()}
               </span>
