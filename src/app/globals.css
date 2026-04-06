@@ -13,15 +13,30 @@
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold text-white bg-brand-600 rounded-lg hover:bg-brand-700 transition-colors duration-200 shadow-sm;
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold text-white bg-brand-600 rounded-xl hover:bg-brand-700 transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5;
   }
   .btn-emergency {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-bold text-white bg-emergency-600 rounded-lg hover:bg-emergency-700 transition-colors duration-200 shadow-lg animate-pulse hover:animate-none;
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-bold text-white bg-gradient-to-r from-emergency-600 to-emergency-500 rounded-xl hover:from-emergency-700 hover:to-emergency-600 transition-all duration-300 shadow-lg shadow-emergency-500/30 hover:shadow-xl hover:shadow-emergency-500/40 hover:-translate-y-0.5;
   }
   .card {
-    @apply bg-white rounded-xl border border-gray-200 p-6 shadow-sm hover:shadow-md transition-shadow duration-200;
+    @apply bg-white rounded-2xl border border-gray-100 p-6 shadow-sm hover:shadow-lg hover:border-gray-200 transition-all duration-300;
   }
   .section-heading {
     @apply text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl;
+  }
+  .section-subheading {
+    @apply text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-full;
+  }
+  .badge-brand {
+    @apply badge bg-brand-100 text-brand-700;
+  }
+  .badge-emergency {
+    @apply badge bg-emergency-100 text-emergency-700;
+  }
+  .gradient-text {
+    @apply bg-gradient-to-r from-brand-600 to-brand-400 bg-clip-text text-transparent;
   }
 }
