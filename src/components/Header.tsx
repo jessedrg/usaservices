@@ -11,17 +11,22 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
       {/* Emergency top bar */}
-      <div className="bg-emergency-600 text-white text-center py-2 px-4 text-sm font-semibold">
-        <div className="flex items-center justify-center gap-2">
-          <Phone className="h-4 w-4" />
-          <span>24/7 Emergency Services — Fast Response Guaranteed</span>
+      <div className="bg-gradient-to-r from-brand-900 via-brand-800 to-brand-900 text-white text-center py-2.5 px-4 text-sm font-medium">
+        <div className="flex items-center justify-center gap-3">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+          </span>
+          <span className="text-brand-200">24/7 Emergency Services Available</span>
+          <span className="hidden sm:inline text-brand-400">|</span>
           <a
             href={SITE_PHONE_HREF}
-            className="underline hover:no-underline ml-2"
+            className="hidden sm:inline-flex items-center gap-1.5 font-semibold text-white hover:text-amber-300 transition-colors"
           >
-            Call Now: {SITE_PHONE}
+            <Phone className="h-3.5 w-3.5" />
+            {SITE_PHONE}
           </a>
         </div>
       </div>
@@ -36,28 +41,28 @@ export function Header() {
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-1">
             <Link
               href="/services"
-              className="text-gray-600 hover:text-brand-600 font-medium transition-colors"
+              className="px-4 py-2 text-gray-600 hover:text-brand-600 hover:bg-brand-50 font-medium transition-all rounded-lg"
             >
               Services
             </Link>
             <Link
               href="/locations"
-              className="text-gray-600 hover:text-brand-600 font-medium transition-colors"
+              className="px-4 py-2 text-gray-600 hover:text-brand-600 hover:bg-brand-50 font-medium transition-all rounded-lg"
             >
               Locations
             </Link>
             <Link
               href="/about"
-              className="text-gray-600 hover:text-brand-600 font-medium transition-colors"
+              className="px-4 py-2 text-gray-600 hover:text-brand-600 hover:bg-brand-50 font-medium transition-all rounded-lg"
             >
               About
             </Link>
-            <a href={SITE_PHONE_HREF} className="btn-emergency text-sm py-2">
+            <a href={SITE_PHONE_HREF} className="btn-emergency text-sm py-2.5 px-5 ml-3">
               <Phone className="h-4 w-4" />
-              Emergency Call
+              Get Help Now
             </a>
           </div>
 
